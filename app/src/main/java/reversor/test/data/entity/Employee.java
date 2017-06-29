@@ -34,12 +34,8 @@ public class Employee {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getSkills() {
-        StringBuilder skillsString = new StringBuilder("Skills:");
-        for (String s : skills) {
-            skillsString.append(" ").append(s).append(",");
-        }
-        return skillsString.deleteCharAt(skillsString.length() - 1).toString();
+    public List<String> getSkills() {
+        return skills;
     }
 
     public void setSkills(List<String> skills) {

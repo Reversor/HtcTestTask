@@ -49,10 +49,15 @@ public class EmployeeAdapter extends BaseAdapter {
 
         StringBuilder description = new StringBuilder();
         description.append("Phone: ").append(employee.getPhoneNumber()).append("; ")
-                .append(employee.getSkills());
+                .append("Skills: ");
+        for (String s : employee.getSkills()) {
+            description.append(" ").append(s).append(",");
+        }
+        description.deleteCharAt(description.length() - 1);
 
         ((TextView) view.findViewById(R.id.name)).setText(employee.getName());
         ((TextView) view.findViewById(R.id.description)).setText(description.toString());
+
         return view;
     }
 }

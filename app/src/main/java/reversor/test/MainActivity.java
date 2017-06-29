@@ -17,17 +17,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
         ListView list = (ListView) findViewById(R.id.listView);
         DataLoader loader = new DataLoader();
         Company company = null;
+
         try {
             company = loader.execute().get();
+            list.setAdapter(new EmployeeAdapter(this, company));
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         } finally {
             loader.cancel(true);
         }
 
-        list.setAdapter(new EmployeeAdapter(this, company));
     }
 }
