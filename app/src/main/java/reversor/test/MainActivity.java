@@ -2,7 +2,10 @@ package reversor.test;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.concurrent.ExecutionException;
 
@@ -17,14 +20,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
+
         ListView list = (ListView) findViewById(R.id.listView);
         DataLoader loader = new DataLoader();
-        Company company = null;
+        Company company;
 
         try {
-            company = loader.execute().get();
-            list.setAdapter(new EmployeeAdapter(this, company));
+            if ((company = loader.execute().get()) != null) {
+                list.setAdapter(new EmployeeAdapter(this, company));
+            }
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         } finally {

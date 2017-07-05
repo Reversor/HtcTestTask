@@ -25,7 +25,7 @@ public class DataLoader extends AsyncTask<Void, Void, Company> {
             urlConnection = ((HttpURLConnection) url.openConnection());
             Reader reader = new InputStreamReader(urlConnection.getInputStream());
 
-            Gson gson = new GsonBuilder().create();
+            Gson gson = new Gson();
             JsonObject jsonObject = gson.fromJson(reader, JsonObject.class);
 
             Log.i(this.getClass().getName(), "Something created from: " + jsonObject.toString());
@@ -33,7 +33,6 @@ public class DataLoader extends AsyncTask<Void, Void, Company> {
             return jsonObject.getCompany();
         } catch (IOException e) {
             e.printStackTrace();
-
             return null;
         } finally {
             if (urlConnection != null) {
