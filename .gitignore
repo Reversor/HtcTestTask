@@ -9,3 +9,9 @@
 .externalNativeBuild
 /gradle
 /app/.gitignore
+app/libs/
+app/src/main/res/drawable/
+gradle.properties
+gradlew
+gradlew.bat
+settings.gradle
